@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+
+
+{% block content %}
+
+{% for p in pic %}
+<span class="border">   
+  <img src="{{p.image.url}}" class="figure-img img-fluid rounded" alt="..."> 
+</span>
+{% endfor %}
+
+{% endblock content %}

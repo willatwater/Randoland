@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+    <h4>Latest Posts</h4>
+{% endblock page_header %}
+
+{% block content %}
+
+<div class="card mb-3">
+    <h4 class="card-header">
+        <a href="{% url 'blog:bill_breakdowns' %}">Bill Breakdowns</a>
+    </h4>
+    
+    <div class="card-body">
+        {% for bill_breakdown in bill_breakdowns %}
+        <h3>
+            <a href="{% url 'blog:bill_breakdown' bill_breakdown.slug %}">{{bill_breakdown.title}}</a><br>
+            <small class="text-muted">{{bill_breakdown.blurb}}</small>
+        </h3>
+            <br>
+        {% empty %}
+            <h3>No posts have been added yet</h3>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="card mb-3">
+    <h4 class="card-header">
+        <a href="{% url 'blog:thinkpieces' %}">Thinkpieces</a>
+    </h4>
+    
+    <div class="card-body">
+    <h3>
+        {% for thinkpiece in thinkpieces %}
+            <a href="{% url 'blog:thinkpiece_detail' thinkpiece.slug %}">{{thinkpiece.title}}</a><br>
+            <small class="text-muted">{{thinkpiece.blurb}}</small>
+            
+    </h3>
+            <br>
+        {% empty %}
+            <h3>No posts have been added yet</h3>
+        {% endfor %}
+    </div>
+</div>
+        
+
+{% endblock content %}

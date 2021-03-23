@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+<p> 
+<a href="{% url 'blog:bill_breakdowns' %}">Back to list</a>
+</p>
+<h4><br>{{bill_breakdown.title}}
+
+<a href="{{bill_breakdown.bill_link}}">
+<small class="text-muted">Link to full bill text&raquo</small>
+</a>
+</h4>
+{% endblock page_header %}
+
+
+{% block content %}
+
+{% for breakdownitem in breakdownitems %} 
+
+ 
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{breakdownitem.title}}</h5>
+    <p class="card-text">{{breakdownitem.text|safe}}</p>
+    
+    <a href="{% url 'blog:pics' bill_breakdown.slug breakdownitem.id %}" class="btn btn-primary">
+    Bill Text&raquo
+    </a>  
+  </div>
+</div>
+
+
+{% endfor %}
+
+{% endblock content %}

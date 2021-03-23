@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+    <h4>Bill Breakdowns</h4>
+{% endblock page_header %}
+
+{% block content %}
+
+
+{% for bill_breakdown in bill_breakdowns %}
+    <div class="card mb-3">
+        <h3 class="card-header">
+            <a href="{% url 'blog:bill_breakdown' bill_breakdown.slug %}">{{bill_breakdown.title}}</a>
+            <small class="text-muted">{{bill_breakdown.created_on}}</small>
+        </h3>
+        <div class="card-body">
+            {{bill_breakdown.blurb}}
+        </div>
+    </div>
+    
+{% empty %}
+    <h3>No posts have been added yet</h3>
+{% endfor %}
+
+
+{% endblock content %}
